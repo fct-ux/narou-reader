@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#26231f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="なろうReader">
+  <title>なろうReader</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main id="home" class="landing">
+    <section class="hero-card">
+      <div class="logo-mark">読</div>
+      <h1>なろうReader</h1>
+      <p class="lead">本文に集中するための、個人用リーダー。</p>
+      <form id="urlForm" class="url-form">
+        <input id="episodeUrl" value="https://ncode.syosetu.com/n3669fw/420/" inputmode="url" autocomplete="off" aria-label="各話URL">
+        <button type="submit">読む</button>
+      </form>
+      <p class="hint">「小説家になろう」の各話URLを貼り付けてください。</p>
+    </section>
+
+    <section id="historyCard" class="history-card hidden">
+      <h2>つづきから</h2>
+      <div id="historyList" class="history-list"></div>
+    </section>
+  </main>
+
+  <div id="reader" class="reader-shell theme-paper hidden">
+    <div id="progress" class="progress"></div>
+    <header class="topbar">
+      <button id="homeButton" class="icon-button" aria-label="ホーム">⌂</button>
+      <div class="top-title"><span id="workTitle"></span><strong id="countTop"></strong></div>
+      <button id="settingsButton" class="icon-button" aria-label="表示設定">Aa</button>
+    </header>
+
+    <aside id="settingsPanel" class="settings-panel hidden">
+      <label>文字サイズ <input id="fontSize" type="range" min="15" max="30"><span id="fontSizeValue"></span></label>
+      <label>行間 <input id="lineHeight" type="range" min="1.4" max="2.8" step="0.1"><span id="lineHeightValue"></span></label>
+      <label id="widthRow">本文幅 <input id="readerWidth" type="range" min="520" max="960" step="20"><span id="readerWidthValue"></span></label>
+      <div class="writing-choices">
+        <button id="horizontalButton" type="button">横書き</button>
+        <button id="verticalButton" type="button">縦書き</button>
+      </div>
+      <div class="theme-choices">
+        <button data-theme="paper" type="button">紙</button>
+        <button data-theme="white" type="button">白</button>
+        <button data-theme="dark" type="button">黒</button>
+      </div>
+    </aside>
+
+    <main id="readingColumn" class="reading-column">
+      <section class="episode-head">
+        <p id="chapter" class="chapter"></p>
+        <h1 id="episodeTitle"></h1>
+        <p id="counter" class="counter"></p>
+      </section>
+      <article id="novelBody" class="novel-body"></article>
+      <nav class="episode-nav">
+        <button id="prevButton">← 前の話</button>
+        <button id="topButton">↑ 上へ</button>
+        <button id="nextButton">次の話 →</button>
+      </nav>
+    </main>
+
+    <div class="speech-bar">
+      <button id="speechButton">▶ 読み上げ</button>
+      <label>速度
+        <select id="speechRate">
+          <option value="0.8">0.8×</option><option value="1" selected>1.0×</option>
+          <option value="1.2">1.2×</option><option value="1.4">1.4×</option>
+          <option value="1.6">1.6×</option><option value="1.8">1.8×</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <main id="state" class="state hidden">
+    <div id="spinner" class="spinner"></div>
+    <p id="stateText">本文を読み込んでいます…</p>
+    <button id="stateBack" class="hidden">URL入力へ戻る</button>
+  </main>
+
+
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
